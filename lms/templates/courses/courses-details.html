@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+
+{% block section %}
+
+<div class="container py-5 my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="card shadow-lg">
+          <img src="{{ course.image.url}}" class="card-img-top" style="width: auto; height: 350px ; object-fit: fill;" alt="Complete Python Bootcamp">
+            
+          <div class="card-body">
+            <h2 class="card-title mb-3">
+             {{course.title}}
+            </h2>
+            <p>
+              <i class="fas fa-align-left me-2"></i><strong>Description:</strong><br>
+              {{course.description}}
+            </p>
+  
+            <div class="my-4">
+              <span class="badge bg-primary me-2">
+                <i class="fas fa-layer-group me-1"></i> {{course.level}}
+              </span>
+              <span class="badge bg-success me-2">
+                <i class="fas fa-tag me-1"></i>{{course.category}}
+              </span>
+              <!-- <span class="badge bg-info text-dark">
+                <i class="fas fa-chalkboard-teacher me-1"></i>Online
+              </span> -->
+            </div>
+
+            <div class="mt-4">
+                <p class="mb-0">
+                <strong>Instructor:</strong>
+               <span class="text-muted"> {{ course.instructor.name}} </span>
+            
+              </p>
+            </div>
+  
+            <div class="mt-4">
+              <p class="mb-0">
+                <strong>Fee:</strong>
+               <span class=" {% if course.offer_fee %} text-decoration-line-through text-muted {% endif %}"> <i class="fa-solid fa-indian-rupee-sign me-2"></i> {{ course.fees}} </span>
+            
+              </p>
+                {% if course.offer_fee %}
+                <p class="text-success fw-bold">
+               
+                Offer Fee: <i class="fa-solid fa-indian-rupee-sign mt-2 me-2"></i> {{ course.offer_fee}}
+            
+              </p>
+              {% endif %}
+            </div>
+  
+            <div class="mt-4 text-end">
+              {% if user.role == 'Student' %}
+                 <a href="{% url 'enroll-confirmation' course.uuid %}" class="btn btn-outline-primary me-2">
+                Enroll Now
+                </a>
+                {% endif %}
+
+              <a href="{% url 'courses_list' %}#course-section" class="btn btn-outline-secondary me-2">
+                <i class="fas fa-arrow-left me-1"></i>Back to Courses
+              </a>
+            </div>
+          </div>
+
+
+          <h1 class="m-4">Recomended Courses</h1>
+           <div class="row g-4 justify-content-center">
+            {% for course in recommended_courses %}
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="course-item bg-light">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid" style="height: 350px; width: 100%; object-fit: fill;" src="{{course.image.url}}" alt="">
+                        <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                            <a href="{% url 'course-detail' course.uuid %}" class="flex-shrink-0 btn text-white btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                            {% if user.role == 'Student' %}
+                            <a href="{% url 'enroll-confirmation' course.uuid %}" class="flex-shrink-0 text-white btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Enroll Now</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="text-center p-4 pb-0">
+                        {% if course.offer_fee%}
+                        <h3 class="mb-0"><span class="text-decoration-line-through me-2"><i class="fa-solid fa-indian-rupee-sign"></i>{{course.fees}}</span>{{course.offer_fee}}</h3>
+                        {% else %}
+                        <h3 class="mb-0"><i class="fa-solid fa-indian-rupee-sign"></i>{{course.fees}}</h3>
+                       
+                        {% endif %}
+                        <div class="mb-3">
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small>(123)</small>
+                        </div>
+                        <h5 class="mb-4">{{course.title}}</h5>
+                        
+                        <h6 class="mb-2">{{course.category}}</h6>
+                        
+                        <h6 class="mb-2">{{course.level}}</h6>
+                    </div>
+                    <div class="d-flex border-top">
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>{{course.instructor}}</small>
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
+                        <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small>
+                    </div>
+                </div>
+            </div>
+          
+            {% endfor %}
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'base.html'%}
+
+{% block section %}
+
+<div class="container my-5">
+    <div class="card border-primary">
+        <div class="card-header bg-primary text-white text-center fw-bold fs-4">
+            Create New Course
+        </div>
+        <div class="card-body">
+            <form method='post' enctype="multipart/form-data"> 
+                {% csrf_token %}
+                <div class='row mb-3'>
+                    <div class='col-md-6'>
+                        <label for="courseTitle" class="form-label">Course Title</label>
+                        <!-- <input type="text" class="form-control" id="courseTitle" placeholder="Enter course title" 
+                            name='title' required> -->
+                        {{form.title}}
+                        {% if form.title.errors %}
+                        <p class="text-danger">{{form.title.errors|join:" "}}</p>
+                        {% endif %}
+                    </div>
+                    <div class='col-md-6'>
+
+                        <label for="courseImage" class="form-label">Course Image</label>
+                        <!-- <input class="form-control" type="file" id="courseImage" name='image'> -->
+                         {{form.image}}
+                        {% if form.image.errors %}
+                        <p class="text-danger">{{form.image.errors|join:" "}}</p>
+                        {% endif %}
+
+                    </div>
+                    <div>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="courseDescription" class="form-label">Description</label>
+                        <!-- <textarea class="form-control" id="courseDescription" rows="4"
+                            placeholder="Enter course description" name='description'></textarea> -->
+                        {{form.description}}
+                        {% if form.description.errors %}
+                        <p class="text-danger">{{form.description.errors|join:" "}}</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="courseCategory" class="form-label">Category</label>
+                        <!-- <select class="form-select" id="courseCategory" name='category'> -->
+                        {{form.category}}
+                        {% if form.category.errors %}
+                        <p class="text-danger">{{form.category.errors|join:" "}}</p>
+                        {% endif %}
+                            
+
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="courseLevel" class="form-label">Level</label>
+
+                        <!-- <select class="form-select" id="courseLevel" name='level'> -->
+                        {{form.level}}
+                        {% if form.level.errors %}
+                        <p class="text-danger">{{form.level.errors|join:" "}}</p>
+                        {% endif %}
+
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="courseTYPE" class="form-label">Type</label>
+                        <!-- <input type="text" class="form-control" id="courseDuration" placeholder="e.g., 3 months"
+                            name='duration'> -->
+                        {{form.type}}
+                        {% if form.type.errors %}
+
+                        <p class="text-danger">{{form.type.errors|join:" "}}</p>
+                        {% endif %}
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="courseFee" class="form-label">Fee</label>
+                            <!-- <input type="text" class="form-control" id="courseFee" placeholder="e.g., $499" name='fee'> -->
+                            {{form.fee}}
+                            {% if form.fee.errors %}
+                            <p class="text-danger">{{form.fee.errors|join:" "}}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="offerFee" class="form-label">Offer Fee</label>
+                            <!-- <input type="text" class="form-control" id="offerFee" placeholder="e.g., $299"
+                                name='offer_fee'> -->
+                            {{form.offer_fee}}
+                            {% if form.fee.errors %}
+                            <p class="text-danger">{{form.fee.errors|join:" "}}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Create Course</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block section %}
+
+<div class="container my-5">
+    <div class="card border-primary">
+      <div class="card-header bg-primary text-white text-center fw-bold fs-4">
+     Instructor Register
+      </div>
+      <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        <div class="row mb-3 ">
+            <div class="col-md-6">
+                <label for="courseTitle" class="form-label">First Name </label>
+            <!-- <input type="text" class="form-control" id="courseTitle" name="title" placeholder="Enter course title"> -->
+                {{ profile_form.first_name }}
+                {% if profile_form.first_name.errors %}
+                    <p class="text-danger">{{ profile_form.first_name.errors | join:" " }}</p>
+                 {% endif %}
+            </div>
+            <div class="col-md-6">
+
+                <label for="courseImage" class="form-label">Last Name</label>
+                <!-- <input class="form-control" name="image" type="file" id="courseImage"> -->
+                 {{ profile_form.last_name }}
+                 {% if profile_form.last_name.errors %}
+                    <p class="text-danger">{{ profile_form.last_name.errors | join:" " }}</p>
+                 {% endif %}
+            </div>
+        </div>
+
+        <div class="mb-3">
+                 
+            <label for="courseDescription" class="form-label">Email</label>
+            {{ profile_form.email }}
+            {% if profile_form.email.errors %}
+                    <p class="text-danger">{{ profile_form.email.errors | join:" " }}</p>
+            {% endif %}
+        
+            </div>
+  
+         <div class="mb-3">
+                 
+            <label for="courseDescription" class="form-label">Image</label>
+            {{ instructor_form.image }}
+            {% if instructor_form.image.errors %}
+                    <p class="text-danger">{{ instructor_form.image.errors | join:" " }}</p>
+            {% endif %}
+        
+            </div>
+      
+
+
+
+        <div class=" row mb-3">
+            <div class="col-md-6">
+                 
+            <label for="courseDescription" class="form-label">Password</label>
+            {{ profile_form.password }}
+            {% if profile_form.password.errors %}
+                    <p class="text-danger">{{ profile_form.password.errors | join:" " }}</p>
+            {% endif %}
+        
+            </div>
+            <div class="col-md-6">
+                
+            <label for="courseDescription" class="form-label">Confirm Password</label>
+            {{ profile_form.confirm_password }}
+            {% if profile_form.confirm_password.errors %}
+                    <p class="text-danger">{{ profile_form.confirm_password.errors | join:" " }}</p>
+            {% endif %}
+          
+            </div>
+        </div>
+        
+         
+        {% comment %} <div class="mb-3">
+            <label for="courseCategory" class="form-label">Qualification</label>
+            
+            {{ instructor_form.qualification }}
+            {% if instructor_form.qualification.errors %}
+                    <p class="text-danger">{{ instructor_form.qualification.errors | join:" " }}</p>
+            {% endif %}
+        </div>
+        </div> {% endcomment %}
+
+
+        <div class="mb-3">
+
+            <label for="courseCategory" class="form-label">Description</label>
+            
+            {{ instructor_form.description }}
+            {% if instructor_form.description.errors %}
+                    <p class="text-danger">{{ instructor_form.description.errors | join:" " }}</p>
+            {% endif %}
+
+        </div>
+
+        <div class="mb-3">
+            
+            <label for="courseCategory" class="form-label">Area of Expertise</label>
+            
+            {{ instructor_form.area_of_expertise }}
+            {% if instructor_form.area_of_expertise.errors %}
+                    <p class="text-danger">{{ instructor_form.area_of_expertise.errors | join:" " }}</p>
+            {% endif %}
+
+        </div>
+
+        </div>
+        </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary mt-4">Register Instructor </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

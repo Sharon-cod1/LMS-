@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block section %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white text-center">
+            <h3 class="mb-0">Enroll Confirmation</h3>
+          </div>
+          <div class="card-body">
+            <hr>
+            
+            <h5 class="mb-3">Course Details</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between">
+                <strong>Course Name:</strong>
+                <span>{{payment.course.title}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <strong>Payment Fee:</strong>
+                <span><i class="fa-solid fa-indian-rupee-sign me-2"></i>{{payment.amount}}</span>
+              </li>
+            </ul>
+
+            <div class="mt-4 text-center">
+              <button class="btn btn-success btn-lg"><a href="{% url 'razorpay-view' payment.course.uuid %}">Pay Now</a></button>
+            </div>
+          </div>
+          <div class="card-footer text-muted text-center">
+            Need help? <a href="#" class="text-decoration-none">Contact Support</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

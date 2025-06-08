@@ -1,0 +1,45 @@
+{% extends 'base.html'%}
+
+{% block section %}
+
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="min-height: 50vh;">
+        <div class="col-md-8">
+            <h1 class="text-center mb-4">Welcome to the LMS</h1>
+            <p class="text-center">Please login to continue.</p>
+        </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h4 class="text-center mb-4">Login</h4>
+            <form method="POST" action="#">
+                {% csrf_token %}
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <!-- <input type="text" class="form-control" id="username" name="username" required /> -->
+                {{form.username}}
+                {% if form.username.errors %}
+                <p class="text-danger">{{form.username.errors|join:" "}} </p>
+                {% endif %}
+              </div>
+
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <!-- <input type="password" class="form-control" id="password" name="password" required /> -->
+                {{form.password}}
+                {% if form.password.errors %}
+                <p class="text-danger">{{form.password.errors|join:" "}} </p>
+                {% endif %}
+              </div>
+              {% if error %}
+              <p class="text-danger">{{error}}</p>
+              {% endif %}
+              <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
